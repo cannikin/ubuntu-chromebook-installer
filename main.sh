@@ -346,6 +346,9 @@ run_command "sudo mv $tmp_dir/fstab $system_chroot/etc/fstab"
 log_msg "INFO" "Adding 14.04 source repo..."
 run_command_chroot "echo -e 'deb-src http://archive.ubuntu.com/ubuntu/ trusty main restricted universe \ndeb-src http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe' |sudo tee -a /etc/apt/sources.list"
 
+# via Tom to attempt to fix F-keys
+run_command "sudo add-apt-repository universe"
+
 log_msg "INFO" "Installing updates..."
 run_command_chroot "export DEBIAN_FRONTEND=noninteractive; apt-get -y -q update"
 run_command_chroot "export DEBIAN_FRONTEND=noninteractive; apt-get -y -q upgrade"
